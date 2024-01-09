@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    container_name: base_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+  adminer:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: base@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: solar123
+    ports:
+      - 8080:80
+    depends_on:
+      - db
