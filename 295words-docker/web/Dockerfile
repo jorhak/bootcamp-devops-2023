@@ -3,7 +3,10 @@ FROM golang:alpine
 WORKDIR /app
 
 COPY . .
-RUN go build -o myapp
+RUN go mod init dispatcher && \
+    go mod tidy && \
+    go build
+
 EXPOSE 80
 
-CMD [ "./myapp" ]
+CMD ["./dispatcher"]
