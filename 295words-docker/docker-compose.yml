@@ -33,14 +33,14 @@ services:
     depends_on:
       - db
 
-  web:
-    image: devops_web
-    container_name: web
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 80:80
-    depends_on:
-      - api
+  #web:
+  #  image: devops_web
+  #  container_name: web
+  #  build:
+  #    context: ./web
+  #    dockerfile: Dockerfile
+  #  restart: always
+  #  ports:
+  #    - 80:80
+  #  depends_on:
+  #    - api
