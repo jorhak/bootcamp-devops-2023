@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: jorhak/postgres_devops:v1.0.0
+    container_name: db_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+    depends_on:
+      - db
+
+  api:
+    image: jorhak/api_devops:v1.0.0
+    container_name: api
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  web:
+    image: jorhak/web_devops:v1.0.0
+    container_name: web
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - api
