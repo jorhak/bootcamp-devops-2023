@@ -22,3 +22,5 @@ docker tag $IMAGE_DB:$VERSION $REGISTRY/$IMAGE_DB:$VERSION
 docker push $REGISTRY/$IMAGE_API:$VERSION
 docker push $REGISTRY/$IMAGE_WEB:$VERSION
 docker push $REGISTRY/$IMAGE_DB:$VERSION
+
+docker-compose -f deploy-words.yml up -d
