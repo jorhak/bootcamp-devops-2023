@@ -5,7 +5,7 @@ pipeline {
         IMAGE='jenkins'
         REGISTRY='jorhak'
         VERSION='v1'
-        SERVER='ec2-user@54.159.156.35'
+        SERVER='azureuser@4.246.128.219'
     }
     stages {
         stage('install dependencies') {
@@ -69,13 +69,13 @@ pipeline {
                '''
             }
         }  
-        //stage('deploy to aws') {
-        //    steps {
-        //        sshagent (['ssh-aws']) {
-        //            sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml $SERVER:/home/ec2-user'
-        //            sh 'ssh $SERVER docker-compose up -d'
-        //        }
-        //    }
-        //}                
+        stage('deploy to aws') {
+            steps {
+                sshagent (['ssh-azure']) {
+                    sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml $SERVER:/home/azureuser'
+                    sh 'ssh $SERVER docker-compose up -d'
+                }
+            }
+        }                
     }
 }
