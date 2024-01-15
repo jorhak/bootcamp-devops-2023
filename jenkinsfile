@@ -73,7 +73,7 @@ pipeline {
             steps {
                 sshagent (['ssh-azure']) {
                     sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml $SERVER:/home/azureuser'
-                    sh 'ssh $SERVER docker-compose up -d'
+                    sh 'ssh $SERVER docker compose up -d'
                 }
             }
         }                
