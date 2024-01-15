@@ -2,9 +2,9 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_LOGIN = credentials('docker')
-        IMAGE='holamundo'
-        REGISTRY='roxsross12'
-        VERSION='v2'
+        IMAGE='jenkins'
+        REGISTRY='jorhak'
+        VERSION='v1'
         SERVER='ec2-user@54.159.156.35'
     }
     stages {
@@ -69,13 +69,13 @@ pipeline {
                '''
             }
         }  
-        stage('deploy to aws') {
-            steps {
-                sshagent (['ssh-aws']) {
-                    sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml $SERVER:/home/ec2-user'
-                    sh 'ssh $SERVER docker-compose up -d'
-                }
-            }
-        }                
+        //stage('deploy to aws') {
+        //    steps {
+        //        sshagent (['ssh-aws']) {
+        //            sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml $SERVER:/home/ec2-user'
+        //            sh 'ssh $SERVER docker-compose up -d'
+        //        }
+        //    }
+        //}                
     }
 }
